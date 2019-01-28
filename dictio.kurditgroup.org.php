@@ -1,6 +1,7 @@
 <?php
 
 // DOMDocument class is necessary to run this program. (php-xml, php-7.*-xml)
+// Multibyte string class is necessary(line:40,..). (php-mbstring, php-7.*-mbstring)
 
 // output: json
 header("Content-type: application/json; Charset=UTF-8");
