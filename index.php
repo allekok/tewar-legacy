@@ -8,7 +8,7 @@
             تەوار <?php if(!empty($_GET['q'])) { echo "&rsaquo; " . htmlspecialchars($_GET['q']); } ?>
         </title>
         <meta name="keywords" content="واتای وشە,مانای وشە,فەرهەنگی کوردی">
-        <meta name="description" content="گەڕان بۆ واتای وشە لە شەش فەرهەنگی کوردی">
+        <meta name="description" content="گەڕان بۆ واتای وشە لە پێنج فەرهەنگی کوردی">
 
         <style>
             html {
@@ -51,6 +51,7 @@
                 box-shadow: 0 5px 10px -12px;
                 outline: 0;
                 -webkit-appearance: none;
+                appearance:none;
                 font-size:.8em;
                 border-radius:0;
             }
@@ -64,7 +65,7 @@
                 outline:0;
                 border:0;
                 -webkit-appearance: none;
-                cursor:pointer;
+                appearance:none;
                 font-size:.8em;
                 border-radius:2px;
             }
@@ -176,7 +177,7 @@
             تەوار
         </a></h1>
         <small style="font-size: .7em;color: #444;text-align: center;display: block;margin-bottom:1em">
-            گەڕان بۆ واتای وشە لە شەش فەرهەنگ‌دا
+            گەڕان بۆ واتای وشە لە پێنج فەرهەنگ‌دا
             <div style='font-size:.95em'>
                 <a target='_blank' rel='noopener noreferrer nofollow' href="http://ferheng.info/">
                 ئەناهیتا
@@ -197,10 +198,6 @@
                 <a target='_blank' rel='noopener noreferrer nofollow' href="https://ku.wiktionary.org/">
                 ویکیفەرهەنگ
                 </a>
-                &bull;
-                <a target='_blank' rel='noopener noreferrer nofollow' href="https://translate.google.com/">
-                Google Translate
-                </a>
             </div>
         </small>
         <form id="frmS" method="GET">
@@ -214,7 +211,6 @@
             <div id="res_ferheng"></div>
             <div id="res_wiktionary"></div>
             <div id="res_dictio"></div>
-            <div id="res_googleTranslate"></div>
         </div>
     </div>
         
@@ -229,8 +225,8 @@
         </footer>
     
         <script>
-            var loader = "<div class='loader'></div>";
-            var q = document.querySelector("input[name=q]");
+            const loader = "<div class='loader'></div>";
+            const q = document.querySelector("input[name=q]");
         
             document.querySelector("#frmS").addEventListener("submit", function(e) {
                 
@@ -248,8 +244,7 @@
                 search_farhangumejuikawa ( q.value, "#res_farhangumejuikawa" );
                 search_ferheng ( q.value, "#res_ferheng" );
                 search_dictio ( q.value, "#res_dictio" );
-                search_googleTranslate( q.value, "#res_googleTranslate" );
-                
+
                 window.history.pushState({q : q.value}, "", `?q=${q.value}`);
                 document.title = `تەوار › ${q.value}`;
             }
@@ -403,34 +398,6 @@
                     t.innerHTML = fin;
                 }
                 xmlhttp.open("get", `ku.wiktionary.org.php?q=${q}&n=3`, true);
-                xmlhttp.send();
-            }
-            
-            function search_googleTranslate (q, t) {
-                t = document.querySelector(t);
-                t.innerHTML = loader;
-                var res, fin = "";
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onload = function() {
-                    
-                    if (this.responseText == "null") {
-                        t.innerHTML = "";
-                        return;
-                    }
-                    
-                    var res = JSON.parse(this.responseText);
-                    
-                    fin += "<span class='tp' style='direction:ltr'>Google Translate: </span>";
-                    
-                    for( var a in res ) {
-                        
-                        fin += "<div><section></section><section>"+res[a][0]+": "+res[a][1]+"</section></div>";
-                    }
-                    
-                    t.style.animation="loaded 1s ease forwards";
-                    t.innerHTML = fin;
-                }
-                xmlhttp.open("get", `translate.google.com.php?q=${q}`, true);
                 xmlhttp.send();
             }
             
