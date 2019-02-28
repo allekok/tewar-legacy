@@ -3,12 +3,12 @@
 header("Content-type: application/json; Charset=UTF-8");
 
 $null = json_encode(null);
-$q0 = !empty($_GET['q']) ? filter_var($_GET['q'], FILTER_SANITIZE_STRING) : die($null);
+$q0 = !empty(@$_GET['q']) ? filter_var($_GET['q'], FILTER_SANITIZE_STRING) : die($null);
 $q = urlencode($q0);
 
 $res = [];
-$lmt = filter_var($_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
-$pgs = 2;
+$lmt = filter_var(@$_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
+$pgs = 1;
 $n = 0;
 
 for($pg=1; $pg<=$pgs; $pg++) {
@@ -34,7 +34,7 @@ for($pg=1; $pg<=$pgs; $pg++) {
                 "title" => $title,
                 "link" => $link,
                 "desc" => $desc,
-                ];
+            ];
         }
     }
 
