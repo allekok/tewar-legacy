@@ -3,7 +3,7 @@
 header("Content-type: application/json; Charset=UTF-8");
 
 $null = json_encode(null);
-$q = !empty($_GET['q']) ? filter_var($_GET['q'], FILTER_SANITIZE_STRING) : die($null);
+$q = !empty(@$_GET['q']) ? filter_var($_GET['q'], FILTER_SANITIZE_STRING) : die($null);
 
 $url = "http://farhangumejuikawa.com/kawe/result.php";
 
@@ -30,7 +30,7 @@ $dom = new DOMDocument;
 
 $res = [];
 $id = 0;
-$lmt = filter_var($_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
+$lmt = filter_var(@$_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
 $n = 0;
 
 foreach($dom->getElementsByTagName("td") as $td) {

@@ -3,7 +3,7 @@
 header("Content-type: application/json; Charset=UTF-8");
 
 $null = json_encode(null);
-$q = !empty($_GET['q']) ? urlencode(filter_var($_GET['q'], FILTER_SANITIZE_STRING)) : die($null);
+$q = !empty(@$_GET['q']) ? urlencode(filter_var($_GET['q'], FILTER_SANITIZE_STRING)) : die($null);
 
 $html = file_get_contents("https://dictiwa.com/");
 $dom = new DOMDocument;
@@ -21,7 +21,7 @@ foreach($dom->getElementsByTagName("ul") as $ul) {
 }
 
 $res = [];
-$lmt = filter_var($_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
+$lmt = filter_var(@$_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
 $n = 0;
 
 foreach($kind as $k) {

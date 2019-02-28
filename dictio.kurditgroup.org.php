@@ -10,7 +10,7 @@ header("Content-type: application/json; Charset=UTF-8");
 // either because of error or nothing been found.
 $null = json_encode(null);
 
-$q = !empty($_GET['q']) ? urlencode(filter_var($_GET['q'], FILTER_SANITIZE_STRING)) : die($null); // search query
+$q = !empty(@$_GET['q']) ? urlencode(filter_var($_GET['q'], FILTER_SANITIZE_STRING)) : die($null); // search query
 $url = "http://dictio.kurditgroup.org/dictio/{$q}"; // search url
 
 $html = file_get_contents($url) or die($null); // download the search result page($uri).
@@ -22,7 +22,7 @@ $dom = new DOMDocument; // declare a new DOM object.
 // "@" used to ignore html parsing warnings. that caused by undefined html structures.
 
 $res = []; // final results
-$lmt = filter_var($_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
+$lmt = filter_var(@$_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
 // apply a limit on number of results that will be store in $res.
 
 $n = 0; // a checkpoint counter for $lmt.
