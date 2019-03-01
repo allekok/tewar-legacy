@@ -9,6 +9,7 @@ $html = file_get_contents("https://dictiwa.com/");
 $dom = new DOMDocument;
 @$dom->loadHTML($html);
 
+/*
 $kind = [];
 
 foreach($dom->getElementsByTagName("ul") as $ul) {
@@ -19,6 +20,8 @@ foreach($dom->getElementsByTagName("ul") as $ul) {
         }
     }
 }
+ */
+$kind = [ "so/so", "sh/so", "so/sh", "fa/so", "so/fa", "ar/so" , "so/ar", "sh/sh" ];
 
 $res = [];
 $lmt = filter_var(@$_GET['n'], FILTER_VALIDATE_INT) ? $_GET['n'] : 10;
