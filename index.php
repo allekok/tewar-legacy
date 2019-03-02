@@ -275,7 +275,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `ferheng.info.php?q=${q}&n=3`, true);
+             xmlhttp.open("get", `ferheng.info.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
@@ -304,7 +304,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `dictiwa.com.php?q=${q}&n=3`, true);
+             xmlhttp.open("get", `dictiwa.com.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
@@ -333,7 +333,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `farhangumejuikawa.com.php?q=${q}&n=3`, true);
+             xmlhttp.open("get", `farhangumejuikawa.com.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          function search_dictio (q, t) {
@@ -361,7 +361,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `dictio.kurditgroup.org.php?q=${q}&n=3`, true);
+             xmlhttp.open("get", `dictio.kurditgroup.org.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
@@ -397,7 +397,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `ku.wiktionary.org.php?q=${q}&n=3`, true);
+             xmlhttp.open("get", `ku.wiktionary.org.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
