@@ -5,7 +5,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
-            تەوار <?php if(!empty($_GET['q'])) { echo "&rsaquo; " . htmlspecialchars($_GET['q']); } ?>
+            تەوار
+	    <?php
+	    if(isset($_GET['q']))
+		echo "&rsaquo; " . htmlspecialchars($_GET['q']);
+	    ?>
         </title>
         <meta name="keywords" content="واتای وشە,مانای وشە,فەرهەنگی کوردی">
         <meta name="description" content="گەڕان بۆ واتای وشە لە پێنج فەرهەنگی کوردی">
@@ -201,7 +205,11 @@
 		</div>
             </small>
             <form id="frmS" method="GET">
-		<input type="text" name="q" value="<?php if(!empty($_GET['q'])) { echo htmlspecialchars($_GET['q']); } ?>" placeholder="وشە..." >
+		<input type="text" name="q"
+		       value="<?php 
+			      if(isset($_GET['q'])) 
+				  echo htmlspecialchars($_GET['q']); 
+			      ?>" placeholder="وشە..." >
 		<button type="submit">گەڕان</button>
             </form>
             
@@ -275,7 +283,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `ferheng.info.php?q=${q}&n=3`);
+             xmlhttp.open("get", `search/ferheng.info.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
@@ -304,7 +312,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `dictiwa.com.php?q=${q}&n=3`);
+             xmlhttp.open("get", `search/dictiwa.com.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
@@ -333,7 +341,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `farhangumejuikawa.com.php?q=${q}&n=3`);
+             xmlhttp.open("get", `search/farhangumejuikawa.com.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          function search_dictio (q, t) {
@@ -361,7 +369,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `dictio.kurditgroup.org.php?q=${q}&n=3`);
+             xmlhttp.open("get", `search/dictio.kurditgroup.org.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
@@ -397,7 +405,7 @@
                  t.style.animation="loaded 1s ease forwards";
                  t.innerHTML = fin;
              }
-             xmlhttp.open("get", `ku.wiktionary.org.php?q=${q}&n=3`);
+             xmlhttp.open("get", `search/ku.wiktionary.org.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
