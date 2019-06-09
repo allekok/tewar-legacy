@@ -202,6 +202,7 @@
                     <a target='_blank' rel='noopener noreferrer nofollow' href="https://ku.wiktionary.org/">
 			ویکیفەرهەنگ
                     </a>
+		    &bull;
 		    <a target='_blank' rel='noopener noreferrer nofollow' href="https://ckb.wikipedia.org/">
 			ویکیپیدیا
                     </a>
