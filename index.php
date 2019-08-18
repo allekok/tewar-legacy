@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-
 <html lang="ckb" dir="rtl">
     <head>
         <meta charset="utf-8">
@@ -456,6 +455,5 @@
          <?php } ?>
         </script>
         
-    </body>
-    
+    </body>    
 </html>
