@@ -113,12 +113,12 @@
              padding: 1em;
          }
          
-         #res_ferheng div, #res_dictiwa div, #res_farhangumejuikawa div, #res_dictio div, #res_wiktionary div, #res_googleTranslate div, #res_wikipedia div {
+         #res_ferheng div, #res_farhangumejuikawa div, #res_dictio div, #res_wiktionary div, #res_googleTranslate div, #res_wikipedia div {
              margin: 1em auto;
              
          }
          
-         #res_ferheng div section:nth-child(even), #res_dictiwa div section:nth-child(even), #res_farhangumejuikawa div section:nth-child(even), #res_dictio div section:nth-child(even), #res_wiktionary div section:nth-child(even), #res_googleTranslate div section:nth-child(even), #res_wikipedia div section:nth-child(even) {
+         #res_ferheng div section:nth-child(even), #res_farhangumejuikawa div section:nth-child(even), #res_dictio div section:nth-child(even), #res_wiktionary div section:nth-child(even), #res_googleTranslate div section:nth-child(even), #res_wikipedia div section:nth-child(even) {
              font-size: .7em;
              word-wrap: break-word;
          }
@@ -180,14 +180,10 @@
 		تەوار
             </a></h1>
             <small style="font-size: .7em;color: #444;text-align: center;display: block;margin-bottom:1em">
-		گەڕان بۆ واتای وشە لە شەش فەرهەنگ‌دا
+		گەڕان بۆ واتای وشە لە پێنج فەرهەنگ‌دا
 		<div style='font-size:.95em'>
                     <a target='_blank' rel='noopener noreferrer nofollow' href="http://ferheng.info/">
 			ئەناهیتا
-                    </a>
-                    &bull;
-                    <a target='_blank' rel='noopener noreferrer nofollow' href="https://dictiwa.com/">
-			هیوا
                     </a>
                     &bull;
                     <a target='_blank' rel='noopener noreferrer nofollow' href="http://farhangumejuikawa.com/kawe/">
@@ -217,7 +213,6 @@
             </form>
             
             <div id="res">
-		<div id="res_dictiwa"></div>
 		<div id="res_farhangumejuikawa"></div>
 		<div id="res_ferheng"></div>
 		<div id="res_wikipedia"></div>
@@ -256,8 +251,7 @@
              search_farhangumejuikawa ( q.value, "#res_farhangumejuikawa" );
              search_ferheng ( q.value, "#res_ferheng" );
              search_dictio ( q.value, "#res_dictio" );
-             search_dictiwa ( q.value, "#res_dictiwa" );
-
+	     
              window.history.pushState({q : q.value}, "", `?q=${q.value}`);
              document.title = `تەوار › ${q.value}`;
          }
@@ -289,35 +283,6 @@
                  t.innerHTML = fin;
              }
              xmlhttp.open("get", `search/ferheng.info.php?q=${q}&n=3`);
-             xmlhttp.send();
-         }
-         
-         function search_dictiwa (q, t) {
-             t = document.querySelector(t);
-             t.innerHTML = loader;
-             var res, fin = "";
-             var xmlhttp = new XMLHttpRequest();
-             xmlhttp.onload = function() {
-                 
-                 if (this.responseText == "null") {
-                     t.innerHTML = "";
-                     return;
-                 }
-                 
-                 var res = JSON.parse(this.responseText);
-                 
-                 fin += "<span class='tp'>فەرهەنگی هیوا: </span>";
-                 
-                 for( var a in res ) {
-                     
-                     fin += "<div><section><a rel='noopener noreferrer nofollow' href='"+res[a].link+"'>"+res[a].title+"</a></section>";
-                     fin += "<section>"+res[a].desc+"</section></div>";
-                 }
-                 
-                 t.style.animation="loaded 1s ease forwards";
-                 t.innerHTML = fin;
-             }
-             xmlhttp.open("get", `search/dictiwa.com.php?q=${q}&n=3`);
              xmlhttp.send();
          }
          
