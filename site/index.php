@@ -63,7 +63,7 @@
 	</div>
         
         <footer style="text-align:center;flex-shrink:0">
-            <a href="https://allekok.com/">
+            <a href="https://allekok.ir/">
                 ئاڵەکۆک
             </a>
             <a href="dev.html">
