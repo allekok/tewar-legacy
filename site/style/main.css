@@ -107,12 +107,12 @@ code {
     padding: 1em;
 }
 
-#res_ferheng div, #res_farhangumejuikawa div, #res_dictio div, #res_wiktionary div, #res_googleTranslate div, #res_wikipedia div {
+#res_ferheng div, #res_farhangumejuikawa div, #res_dictio div, #res_wiktionary div, #res_googleTranslate div, #res_wikipedia div, #res_vejin div {
     margin: 1em auto;
     
 }
 
-#res_ferheng div section:nth-child(even), #res_farhangumejuikawa div section:nth-child(even), #res_dictio div section:nth-child(even), #res_wiktionary div section:nth-child(even), #res_googleTranslate div section:nth-child(even), #res_wikipedia div section:nth-child(even) {
+#res_ferheng div section:nth-child(even), #res_farhangumejuikawa div section:nth-child(even), #res_dictio div section:nth-child(even), #res_wiktionary div section:nth-child(even), #res_googleTranslate div section:nth-child(even), #res_wikipedia div section:nth-child(even), #res_vejin div section:nth-child(even) {
     font-size: .7em;
     word-wrap: break-word;
 }

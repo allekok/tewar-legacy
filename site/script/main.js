@@ -19,6 +19,7 @@ function search() {
     search_farhangumejuikawa ( query, "#res_farhangumejuikawa" );
     search_ferheng ( query, "#res_ferheng" );
     search_dictio ( query, "#res_dictio" );
+    search_vejin ( query , "#res_vejin" );
     
     window.history.pushState({q : query}, "", `?q=${query}`);
     document.title = `تەوار › ${query}`;
@@ -180,6 +181,34 @@ function search_wikipedia (q, t) {
         t.innerHTML = fin;
     }
     xmlhttp.open("get", `search/ckb.wikipedia.org.php?q=${q}&n=3`);
+    xmlhttp.send();
+}
+function search_vejin (q, t) {
+    t = document.querySelector(t);
+    t.innerHTML = loader;
+    var res, fin = "";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function() {
+        
+        if (this.responseText == "null") {
+            t.innerHTML = "";
+            return;
+        }
+        
+        var res = JSON.parse(this.responseText);
+        
+        fin += "<span class='tp'>فەرهەنگەکانی ڤەژین: </span>";
+        
+        for( var a in res ) {
+            
+            fin += "<div><section><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].title+"</a></section>";
+            fin += "<section>"+res[a].def+"</section></div>";
+        }
+        
+        t.style.animation="loaded 1s ease forwards";
+        t.innerHTML = fin;
+    }
+    xmlhttp.open("get", `search/lex.vejinbooks.com.php?q=${q}&n=3`);
     xmlhttp.send();
 }
 
