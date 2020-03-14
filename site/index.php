@@ -17,7 +17,7 @@
     </head>
     <body style="animation: loaded .8s ease forwards">
 	<div style="flex: 1 0 auto;">
-            <h1 style='text-align:center;margin:0;padding:.5em 0 .3em;font-size:3em'><a style="text-decoration:none;color:black;" href='index.php'>
+            <h1 style='text-align:center;margin:0;padding:.5em 0 0;font-size:2em'><a style="text-decoration:none;color:black;" href='index.php'>
 		تەوار
             </a></h1>
             <small style="font-size: .7em;color: #444;text-align: center;display: block;margin-bottom:1em">
