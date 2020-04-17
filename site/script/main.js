@@ -20,6 +20,7 @@ function search() {
     search_ferheng ( query, "#res_ferheng" );
     search_dictio ( query, "#res_dictio" );
     search_vejin ( query , "#res_vejin" );
+    search_tewar_2 ( query , "#res_tewar_2" );
     
     window.history.pushState({q : query}, "", `?q=${query}`);
     document.title = `تەوار › ${query}`;
@@ -209,6 +210,34 @@ function search_vejin (q, t) {
         t.innerHTML = fin;
     }
     xmlhttp.open("get", `search/lex.vejinbooks.com.php?q=${q}&n=3`);
+    xmlhttp.send();
+}
+function search_tewar_2 (q, t) {
+    t = document.querySelector(t);
+    t.innerHTML = loader;
+    var res, fin = "";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function() {
+        
+        if (this.responseText == "null") {
+            t.innerHTML = "";
+            return;
+        }
+        
+        var res = JSON.parse(this.responseText);
+        
+        fin += "<span class='tp'>تەوار - وەشانی ٢: </span>";
+        
+        for( var a in res ) {
+            
+            fin += "<div><section><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].word+"</a></section>";
+            fin += "<section>"+res[a].mean+"</section></div>";
+        }
+        
+        t.style.animation="loaded 1s ease forwards";
+        t.innerHTML = fin;
+    }
+    xmlhttp.open("get", `search/tewar-2.php?q=${q}&n=1`);
     xmlhttp.send();
 }
 

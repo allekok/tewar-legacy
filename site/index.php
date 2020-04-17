@@ -11,7 +11,7 @@
 	    ?>
         </title>
         <meta name="keywords" content="واتای وشە,مانای وشە,فەرهەنگی کوردی">
-        <meta name="description" content="گەڕان بۆ واتای وشە لە شەش فەرهەنگی کوردی">
+        <meta name="description" content="گەڕان بۆ واتای وشە لە حەوت فەرهەنگی کوردی">
 	{SERVICE_WORKER}
 	{STYLE}
     </head>
@@ -21,7 +21,7 @@
 		تەوار
             </a></h1>
             <small style="font-size: .7em;color: #444;text-align: center;display: block;margin-bottom:1em">
-		گەڕان بۆ واتای وشە لە شەش فەرهەنگ‌دا
+		گەڕان بۆ واتای وشە لە حەوت فەرهەنگ‌دا
 		<div style='font-size:.95em'>
                     <a target='_blank' rel='noopener noreferrer nofollow' href="http://ferheng.info/">
 			ئەناهیتا
@@ -46,6 +46,10 @@
 		    <a target='_blank' rel='noopener noreferrer nofollow' href="https://lex.vejinbooks.com/">
 			فەرهەنگەکانی ڤەژین
                     </a>
+		    &bull;
+		    <a target='_blank' rel='noopener noreferrer nofollow' href="https://allekok.ir/tewar/">
+			تەوار - وەشانی ٢
+                    </a>
 		</div>
             </small>
             <form id="frmS" method="GET">
@@ -58,6 +62,7 @@
             </form>
             
             <div id="res">
+		<div id="res_tewar_2"></div>
 		<div id="res_vejin"></div>
 		<div id="res_farhangumejuikawa"></div>
 		<div id="res_ferheng"></div>
