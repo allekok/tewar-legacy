@@ -26,7 +26,6 @@ function search() {
     document.title = `تەوار › ${query}`;
 }
 
-
 function search_ferheng (q, t) {
     t = document.querySelector(t);
     t.innerHTML = loader;
@@ -41,11 +40,9 @@ function search_ferheng (q, t) {
         
         var res = JSON.parse(this.responseText);
         
-        fin += "<span class='tp'>فەرهەنگی ئەناهیتا: </span>";
-        
         for( var a in res ) {
             
-            fin += "<div><section><a rel='noopener noreferrer nofollow' href='"+res[a].link+"'>"+res[a].title+"</a></section>";
+            fin += "<div><section><span class='tp'>فەرهەنگی ئەناهیتا</span><a rel='noopener noreferrer nofollow' href='"+res[a].link+"'>"+res[a].title+"</a></section>";
             fin += "<section>"+res[a].desc+"</section></div>";
         }
         
@@ -70,11 +67,9 @@ function search_farhangumejuikawa (q, t) {
         
         var res = JSON.parse(this.responseText);
         
-        fin += "<span class='tp'>فەرهەنگی کاوە: </span>";
-        
         for( var a in res ) {
             
-            fin += "<div><section>"+res[a].link+"</section>";
+            fin += "<div><section><span class='tp'>فەرهەنگی کاوە</span>"+res[a].link+"</section>";
             fin += "<section>"+res[a].desc+"</section></div>";
         }
         
@@ -98,11 +93,9 @@ function search_dictio (q, t) {
         
         var res = JSON.parse(this.responseText);
         
-        fin += "<span class='tp'>دیکتیۆ: </span>";
-        
         for( var a in res ) {
             
-            fin += "<div><section>"+res[a].en+"</section>";
+            fin += "<div><section><span class='tp'>دیکتیۆ</span>"+res[a].en+"</section>";
             fin += "<section>"+res[a].ckb+"</section></div>";
         }
         
@@ -132,13 +125,11 @@ function search_wiktionary (q, t) {
             return;
         }
         
-        fin += "<span class='tp'>ویکیفەرهەنگ: </span>";
-        
         var rqs = res.query.search;
         
         for( var a in rqs ) {
             
-            fin += "<div><section><a rel='noopener noreferrer nofollow' href='https://ku.wiktionary.org/wiki/"+encodeURIComponent(rqs[a].title)+"'>"+rqs[a].title+"</a></section>";
+            fin += "<div><section><span class='tp'>ویکیفەرهەنگ</span><a rel='noopener noreferrer nofollow' href='https://ku.wiktionary.org/wiki/"+encodeURIComponent(rqs[a].title)+"'>"+rqs[a].title+"</a></section>";
             fin += "<section>"+rqs[a].snippet+"</section></div>";
         }
         
@@ -168,13 +159,11 @@ function search_wikipedia (q, t) {
             return;
         }
         
-        fin += "<span class='tp'>ویکیپیدیا: </span>";
-        
         var rqs = res.query.search;
         
         for( var a in rqs ) {
             
-            fin += "<div><section><a rel='noopener noreferrer nofollow' href='https://ckb.wikipedia.org/wiki/"+encodeURIComponent(rqs[a].title)+"'>"+rqs[a].title+"</a></section>";
+            fin += "<div><section><span class='tp'>ویکیپیدیا </span><a rel='noopener noreferrer nofollow' href='https://ckb.wikipedia.org/wiki/"+encodeURIComponent(rqs[a].title)+"'>"+rqs[a].title+"</a></section>";
             fin += "<section>"+rqs[a].snippet+"</section></div>";
         }
         
@@ -184,6 +173,7 @@ function search_wikipedia (q, t) {
     xmlhttp.open("get", `search/ckb.wikipedia.org.php?q=${q}&n=3`);
     xmlhttp.send();
 }
+
 function search_vejin (q, t) {
     t = document.querySelector(t);
     t.innerHTML = loader;
@@ -198,11 +188,9 @@ function search_vejin (q, t) {
         
         var res = JSON.parse(this.responseText);
         
-        fin += "<span class='tp'>فەرهەنگەکانی ڤەژین: </span>";
-        
         for( var a in res ) {
             
-            fin += "<div><section><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].title+"</a></section>";
+            fin += "<div><section><span class='tp'>فەرهەنگەکانی ڤەژین</span><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].title+"</a></section>";
             fin += "<section>"+res[a].def+"</section></div>";
         }
         
@@ -212,6 +200,7 @@ function search_vejin (q, t) {
     xmlhttp.open("get", `search/lex.vejinbooks.com.php?q=${q}&n=3`);
     xmlhttp.send();
 }
+
 function search_tewar_2 (q, t) {
     t = document.querySelector(t);
     t.innerHTML = loader;
@@ -226,11 +215,9 @@ function search_tewar_2 (q, t) {
         
         var res = JSON.parse(this.responseText);
         
-        fin += "<span class='tp'>تەوار - وەشانی ٢: </span>";
-        
         for( var a in res ) {
             
-            fin += "<div><section><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].word+"</a></section>";
+            fin += "<div><section><span class='tp'>تەوار - وەشانی ٢</span><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].word+"</a></section>";
             fin += "<section>"+res[a].mean+"</section></div>";
         }
         

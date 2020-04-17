@@ -17,11 +17,11 @@
     </head>
     <body style="animation: loaded .8s ease forwards">
 	<div style="flex: 1 0 auto;">
-            <h1 style='text-align:center;margin:0;padding:.5em 0 0;font-size:2em'><a style="text-decoration:none;color:black;" href='index.php'>
+            <h1 style='text-align:center;margin:0 1em;padding:.5em 0 0;font-size:2em'><a style="text-decoration:none;color:black;" href='index.php'>
 		تەوار
             </a></h1>
-            <small style="font-size: .7em;color: #444;text-align: center;display: block;margin-bottom:1em">
-		گەڕان بۆ واتای وشە لە حەوت فەرهەنگ‌دا
+            <small style="font-size: .7em;color: #444;display: block;margin: 0 1em 0">
+		گەڕان بۆ واتای وشە لە فەرهەنگەکانی: 
 		<div style='font-size:.95em'>
                     <a target='_blank' rel='noopener noreferrer nofollow' href="http://ferheng.info/">
 			ئەناهیتا
@@ -58,7 +58,7 @@
 			      if(isset($_GET['q'])) 
 				  echo htmlspecialchars($_GET['q']); 
 			      ?>" placeholder="وشە..." >
-		<button type="submit">گەڕان</button>
+		<button type="submit">گەڕان &rsaquo;</button>
             </form>
             
             <div id="res">
