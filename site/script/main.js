@@ -95,8 +95,8 @@ function search_dictio (q, t) {
         
         for( var a in res ) {
             
-            fin += "<div><section><span class='tp'>دیکتیۆ</span>"+res[a].en+"</section>";
-            fin += "<section>"+res[a].ckb+"</section></div>";
+            fin += "<div><section><span class='tp'>دیکتیۆ</span></section>";
+            fin += "<section>"+res[a].text+"</section></div>";
         }
         
         t.style.animation="loaded 1s ease forwards";
