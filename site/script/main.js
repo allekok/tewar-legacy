@@ -190,7 +190,7 @@ function search_vejin (q, t) {
 		
 		for( var a in res ) {
 			
-			fin += "<div><section><span class='tp'>فەرهەنگەکانی ڤەژین</span><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].title+"</a></section>";
+			fin += "<div><section><span class='tp'>فەرهەنگەکانی ڤەژین: "+res[a].wordlist+"</span><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].title+"</a></section>";
 			fin += "<section>"+res[a].def+"</section></div>";
 		}
 		
