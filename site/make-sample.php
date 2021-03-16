@@ -1,14 +1,14 @@
 <?php
 /* Constants */
 const _files = [
-    [
-	'out'=>'../index.php',
-	'in'=>'./index.php',
-    ],
-    [
-	'out'=>'../dev.html',
-	'in'=>'./dev.html',
-    ],
+	[
+		'out'=>'../index.php',
+		'in'=>'./index.php',
+	],
+	[
+		'out'=>'../dev.html',
+		'in'=>'./dev.html',
+	],
 ];
 
 const _script = true;
@@ -45,45 +45,45 @@ $sw = '';
 
 if(_style)
 {
-    $styles = file_get_contents(_style_path);
-    if(_font)
-    {
-	$font_decl = _font_decl;
-	$font_name = "'"._font_name."'";
-    }
-    else
-    {
-	$font_decl = '';
-	$font_name = '';
-    }
-    $styles = str_replace([_font_decl_needle, _font_needle],
-			  [$font_decl,$font_name], $styles);
-    $styles = '<style>'.$styles.'</style>';
+	$styles = file_get_contents(_style_path);
+	if(_font)
+	{
+		$font_decl = _font_decl;
+		$font_name = "'"._font_name."'";
+	}
+	else
+	{
+		$font_decl = '';
+		$font_name = '';
+	}
+	$styles = str_replace([_font_decl_needle, _font_needle],
+			      [$font_decl,$font_name], $styles);
+	$styles = '<style>'.$styles.'</style>';
 }
 
 if(_script)
 {
-    $scripts = '<script>'.file_get_contents(_script_path).'</script>';
+	$scripts = '<script>'.file_get_contents(_script_path).'</script>';
 }
 
 if(_service_worker)
 {
-    $sw = "<script>
+	$sw = "<script>
     if ('serviceWorker' in navigator)
 	navigator.serviceWorker.register('"._service_worker_path.
-	  "', {scope: '"._service_worker_scope."'}); </script>";
+	      "', {scope: '"._service_worker_scope."'}); </script>";
 }
 
 // Replace 
 foreach(_files as $f)
 {
-    $text = file_get_contents($f['in']);
-    
-    $text = str_replace([_script_needle, _style_needle, _service_worker_needle],
-			[$scripts, $styles, $sw], $text);
-    
-    file_put_contents($f['out'], $text);
-    
-    echo "`{$f['out']}` Done.\n";
+	$text = file_get_contents($f['in']);
+	
+	$text = str_replace([_script_needle, _style_needle, _service_worker_needle],
+			    [$scripts, $styles, $sw], $text);
+	
+	file_put_contents($f['out'], $text);
+	
+	echo "`{$f['out']}` Done.\n";
 }
 ?>
