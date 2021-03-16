@@ -6,7 +6,7 @@ $q = isset($_GET['q']) ?
      urlencode(filter_var(
 	     $_GET['q'],
 	     FILTER_SANITIZE_STRING)) : die($null);
-$url = "https://dictio.kurditgroup.org/?q=$q";
+$url = "https://dictio.kurditgroup.org/dictio/$q";
 $html = @file_get_contents($url) or die($null);
 $dom = new DOMDocument;
 @$dom->loadHTML($html);
@@ -18,17 +18,23 @@ $n = 0;
 
 foreach($dom->getElementsByTagName("div") as $div) {
 	if($n == $lmt) break;
-	if($div->getAttribute("class") == "result ltr" or
-		$div->getAttribute("class") == "result rtl")
+	if(strpos($div->getAttribute("class"), "dictio-result") !== FALSE)
 	{
 		$text = filter_var($div->nodeValue, FILTER_SANITIZE_STRING);
+		$text = preg_replace("/^\s+/um", "", $text);
+		$text = preg_replace("/\s+$/um", "", $text);
+		$text = trim($text);
+		$text = str_replace("\n", " - ", $text);
+
 		$text = mb_strlen($text) > 150 ?
 			mb_substr($text, 0, 150) . "..." : $text;	
 		$res[] = [
 			"text" => $text,
+			"url" => $url,
 		];
 		
 		$n++;
+		break;
 	}
 }
 
