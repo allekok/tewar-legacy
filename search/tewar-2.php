@@ -11,7 +11,6 @@ $lmt = filter_var(@$_GET['n'], FILTER_VALIDATE_INT) ?
 $url = "https://allekok.ir/tewar/src/backend/lookup.php?q={$q}&dicts=all&n={$lmt}&output=json";
 $json = @file_get_contents($url);
 $results = json_decode($json, true);
-$res = [];
 foreach($results as $i => $r) {
 	if($i == "time") continue;
 	$res[] = ["word" => $r[1],
