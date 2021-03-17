@@ -191,14 +191,14 @@ function search_vejin (q, t) {
 		
 		for( var a in res ) {
 			
-			fin += "<div><section><span class='tp'>فەرهەنگەکانی ڤەژین: "+res[a].wordlist+"</span><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].title+"</a></section>";
+			fin += "<div><section><span class='tp'>فەرهەنگەکانی ڤەژین"+res[a].wordlist+"</span><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].title+"</a></section>";
 			fin += "<section>"+res[a].def+"</section></div>";
 		}
 		
 		t.style.animation="loaded 1s ease forwards";
 		t.innerHTML = fin;
 	}
-	xmlhttp.open("get", `search/lex.vejinbooks.com.php?q=${q}&n=3`);
+	xmlhttp.open("get", `search/lex.vejin.net.php?q=${q}&n=3`);
 	xmlhttp.send();
 }
 

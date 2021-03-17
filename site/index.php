@@ -43,7 +43,7 @@
 						ویکیپیدیا
 					</a>
 					&bull;
-					<a target='_blank' rel='noopener noreferrer nofollow' href="https://lex.vejinbooks.com/">
+					<a target='_blank' rel='noopener noreferrer nofollow' href="https://lex.vejin.net/">
 						فەرهەنگەکانی ڤەژین
 					</a>
 					&bull;
