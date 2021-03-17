@@ -83,6 +83,9 @@ code {
 #frmS input[name=q]:focus {
 	border-color:#00e;
 }
+.fmk {
+	display:inline-block;
+}
 .fmk button {
 	color: #00e;
 	text-decoration: underline;
