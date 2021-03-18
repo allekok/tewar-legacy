@@ -20,7 +20,7 @@ $results_el = $dom->getElementById("results");
 foreach(get_elements_by_class($results_el, "item", "div") as $item) {
 	if($lmt-- == 0) break;
 	$header_el = get_element_by_class($item, "header", "a");
-	$link = $header_el->getAttribute("href");
+	$link = clean_string($header_el->getAttribute("href"));
 	
 	$dict_el = get_element_by_class($header_el, "fromDict", "span");
 	$dict = clean_string($dict->nodeValue);
@@ -38,7 +38,7 @@ foreach(get_elements_by_class($results_el, "item", "div") as $item) {
 		"title" => $title,
 		"wordlist" => $dict,
 		"def" => $desc,
-		"url" => "https://lex.vejin.net/{$link}",
+		"url" => "https://lex.vejin.net{$link}",
 	];
 }
 if(!$res) echo $null;
