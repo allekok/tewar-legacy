@@ -53,13 +53,13 @@ code {
 	width:100%;
 	margin:auto;
 	padding:1em;
-	border: 1px solid #aaa;
+	border: 1px solid;
 	border-left:0;
 	outline: 0;
 	-webkit-appearance: none;
 	appearance:none;
 	font-size:.8em;
-	border-radius:0;
+	border-radius:0 1em 1em 0;
 }
 #frmS button[type=submit] {
 	display:block;
@@ -70,9 +70,9 @@ code {
 	-webkit-appearance: none;
 	appearance:none;
 	font-size:.8em;
-	border:1px solid #aaa;
+	border:1px solid;
 	border-right:0;
-	border-radius:0;
+	border-radius:1em 0 0 1em;
 	width:10em;
 	text-align:left;
 }
@@ -129,6 +129,11 @@ code {
 	padding-right: 1em;
 }
 
+#res div div {
+	border-top: 1px solid #ddd;
+	padding-top: .5em;
+}
+
 .tp {
 	background: #eee;
 	display: inline-block;
@@ -151,7 +156,7 @@ small a:hover {
 }
 .loader {
 	width:1.5em;
-	height:1.5em;
+	height:1em;
 	border-radius:100%;
 	animation:loading 1s ease infinite;
 	margin:1em auto;

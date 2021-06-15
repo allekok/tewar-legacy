@@ -13,10 +13,10 @@
 	</head>
 	<body>
 		<div style="flex: 1 0 auto;">
-			<h1 style='margin:.5em 1em 0 0;font-size:1.5em;font-weight:bold'><a style="color:black;" href='index.php' onclick="clear_screen(event)">
-				تەوار
-			</a></h1>
 			<form id="frmS" method="GET">
+				<h1 style='margin:auto 0 auto .5em;font-size:1.5em;font-weight:bold'><a style="color:black;" href='index.php' onclick="clear_screen(event)">
+					تەوار
+				</a></h1>
 				<input type="text" name="q"
 				       value="<?php 
 					      if(isset($_GET['q'])) 
