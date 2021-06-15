@@ -5,24 +5,29 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
 			تەوار
-			<?php
-			if(isset($_GET['q']))
-				echo "&rsaquo; " . htmlspecialchars($_GET['q']);
-			?>
 		</title>
 		<meta name="keywords" content="واتای وشە,مانای وشە,فەرهەنگی کوردی">
-		<meta name="description" content="گەڕان بۆ واتای وشە لە حەوت فەرهەنگی کوردی">
+		<meta name="description" content="گەڕان بۆ واتای وشە لە چەند فەرهەنگی ئانلاینی کوردی">
 		{SERVICE_WORKER}
 		{STYLE}
 	</head>
-	<body style="animation: loaded .8s ease forwards">
+	<body>
 		<div style="flex: 1 0 auto;">
-			<h1 style='text-align:center;margin:0 1em;padding:.5em 0 0;font-size:2em'><a style="text-decoration:none;color:black;" href='index.php'>
+			<h1 style='margin:.5em 1em 0 0;font-size:1.5em;font-weight:bold'><a style="color:black;" href='index.php' onclick="clear_screen(event)">
 				تەوار
 			</a></h1>
-			<small style="font-size: .7em;color: #444;display: block;margin: 0 1em 0">
-				گەڕان بۆ واتای وشە لە فەرهەنگەکانی: 
+			<form id="frmS" method="GET">
+				<input type="text" name="q"
+				       value="<?php 
+					      if(isset($_GET['q'])) 
+						      echo htmlspecialchars($_GET['q']); 
+					      ?>" placeholder="وشە..." >
+				<button type="submit">گەڕان &rsaquo;</button>
+			</form>
+
+			<small style="font-size: .7em;color: #444;display: block;margin: 0 1.5em 0">
 				<div style='font-size:.95em'>
+					فەرهەنگەکان:
 					<a target='_blank' rel='noopener noreferrer nofollow' href="http://ferheng.info/">
 						ئەناهیتا
 					</a>
@@ -52,14 +57,6 @@
 					</a>
 				</div>
 			</small>
-			<form id="frmS" method="GET">
-				<input type="text" name="q"
-				       value="<?php 
-					      if(isset($_GET['q'])) 
-						      echo htmlspecialchars($_GET['q']); 
-					      ?>" placeholder="وشە..." >
-				<button type="submit">گەڕان &rsaquo;</button>
-			</form>
 			
 			<div id="res">
 				<div id="res_tewar_2"></div>

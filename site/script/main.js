@@ -1,11 +1,15 @@
+/* Constants */
 const loader = "<div class='loader'></div>";
 const q = document.querySelector("input[name=q]");
 
-document.querySelector("#frmS").addEventListener("submit", function(e) {
+/* Events */
+document.querySelector("#frmS").addEventListener("submit", e => {
 	e.preventDefault();
 	search();
 });
+window.addEventListener('load', search);
 
+/* Functions */
 function search() {
 	const query = q.value.trim();
 	if(! query)
@@ -20,10 +24,7 @@ function search() {
 	search_ferheng ( query, "#res_ferheng" );
 	search_dictio ( query, "#res_dictio" );
 	search_vejin ( query , "#res_vejin" );
-	search_tewar_2 ( query , "#res_tewar_2" );
-	
-	window.history.pushState({q : query}, "", `?q=${query}`);
-	document.title = `تەوار › ${query}`;
+	search_tewar_2 ( query , "#res_tewar_2" );	
 }
 
 function search_ferheng (q, t) {
@@ -79,6 +80,7 @@ function search_farhangumejuikawa (q, t) {
 	xmlhttp.open("get", `search/farhangumejuikawa.com.php?q=${q}&n=3`);
 	xmlhttp.send();
 }
+
 function search_dictio (q, t) {
 	t = document.querySelector(t);
 	t.innerHTML = loader;
@@ -229,6 +231,9 @@ function search_tewar_2 (q, t) {
 	xmlhttp.send();
 }
 
-window.addEventListener('load', function () {
-	search();
-});
+function clear_screen(e) {
+	e.preventDefault()
+	q.value = ''
+	document.querySelectorAll("#res div").forEach(d => d.innerHTML = '')
+	search()
+}
