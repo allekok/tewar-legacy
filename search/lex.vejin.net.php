@@ -3,37 +3,31 @@ require("lib.php");
 
 send_http_headers();
 
-$null = json_encode(null);
-$res = [];
-
 $q = get_query_encoded();
-if(!$q) die($null);
-
 $lmt = get_limit();
-
 $url = "https://lex.vejin.net/ck/search/?t={$q}";
+
 $html = download($url);
 $dom = parse_html($html);
 
-$results_el = $dom->getElementById("results");
+$res = [];
 
-foreach(get_elements_by_class($results_el, "item", "div") as $item) {
-	if($lmt-- == 0) break;
-	$header_el = get_element_by_class($item, "header", "a");
-	$link = clean_string($header_el->getAttribute("href"));
+$results_el = $dom->getElementById("results");
+$items = get_elements_by_class($results_el, "item", "div", $lmt);
+foreach($items as $item) {
+	$header = get_element_by_class($item, "header", "a");
+	$link = clean_string($header->getAttribute("href"));
 	
-	$dict_el = get_element_by_class($header_el, "fromDict", "span");
-	$dict = clean_string($dict->nodeValue);
+	$dict_el = get_element_by_class($header, "fromDict", "span");
+	$dict = clean_string($dict_el->nodeValue);
 	
-	$header_el->removeChild($dict_el);
-	$title = clean_string($header_el->nodeValue);
+	$header->removeChild($dict_el);
+	$title = trim(clean_string($header->nodeValue));
 	
 	$desc = get_element_by_class($item, "description", "div");
-	$desc = clean_string($desc->nodeValue);
-	$desc = mb_strlen($desc) > 100 ?
-		mb_substr($desc, 0, 100) . "..." :
-		$desc;
-	$desc = preg_replace("/\n+/u", "<br>", trim($desc));
+	$desc = snippet(trim(clean_string($desc->nodeValue)));
+	$desc = preg_replace("/\n+/u", "<br>", $desc);
+
 	$res[] = [
 		"title" => $title,
 		"wordlist" => $dict,
@@ -41,6 +35,6 @@ foreach(get_elements_by_class($results_el, "item", "div") as $item) {
 		"url" => "https://lex.vejin.net{$link}",
 	];
 }
-if(!$res) echo $null;
-else echo json_encode($res);
+
+output($res);
 ?>

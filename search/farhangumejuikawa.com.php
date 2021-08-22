@@ -1,64 +1,43 @@
 <?php
-header("Content-type: application/json; Charset=UTF-8");
-$null = json_encode(null);
+require("lib.php");
 
-$q = isset($_GET['q']) ?
-     filter_var($_GET['q'], FILTER_SANITIZE_STRING) :
-     die($null);
+send_http_headers();
+
+$q = get_query();
+$lmt = get_limit();
 $url = "http://farhangumejuikawa.com/kawe/result.php";
-$postdata = http_build_query([
-	'strvar' => $q
-]);
-$opts = ['http' =>
-	[
-		'method'  => 'POST',
-		'header'  => 'Content-type: application/x-www-form-urlencoded',
-		'content' => $postdata
-	]
+$data = [
+	"strvar" => $q
 ];
-$context = stream_context_create($opts);
-$html = @file_get_contents($url, false, $context) or die($null);
-$dom = new DOMDocument;
-@$dom->loadHTML($html);
+
+$html = post($url, $data);
+$dom = parse_html($html);
 
 $res = [];
 $id = 0;
-$lmt = filter_var(@$_GET['n'], FILTER_VALIDATE_INT) ?
-       $_GET['n'] : 10;
-$n = 0;
 
 foreach($dom->getElementsByTagName("td") as $td) {
-	if($n == $lmt)  break;
-	
 	if($td->getAttribute("id") == "wrd") {
-		$title = filter_var($td->nodeValue,
-				    FILTER_SANITIZE_STRING);
+		$title = clean_string($td->nodeValue);
 		$res[$id] = [
-			"title"=>$title,
+			"title" => $title
 		];
-	}
-	
-	if($td->getAttribute("id") == "def") {
-		$desc = filter_var($td->nodeValue,
-				   FILTER_SANITIZE_STRING);
-		$desc = mb_strlen($desc) > 150 ?
-			mb_substr($desc, 0, 150) . "..." : $desc;
+	} else if($td->getAttribute("id") == "def") {
+		$desc = clean_string($td->nodeValue);
+		$desc = snippet($desc);
 		$res[$id] += [
-			
-			"link"=>"<form class='fmk' 
-action='http://farhangumejuikawa.com/kawe/result.php' 
-method='post'><input type='hidden' name='strvar' 
-value='{$res[$id]['title']}'><button type='submit'
->{$res[$id]['title']}</button></form>",
-			
-			"desc"=>$desc,
+			"link" => "<form class='fmk' 
+action='{$url}' method='post'><input type='hidden'
+name='strvar' value='{$res[$id]['title']}'><button
+type='submit'>{$res[$id]['title']}</button></form>",
+			"desc" => $desc,
 		];
-		
 		$id++;
-		$n++;
+		
+		if(!$lmt--)
+			break;
 	}
 }
 
-if(empty($res)) die($null);
-echo(json_encode($res));
+output($res);
 ?>

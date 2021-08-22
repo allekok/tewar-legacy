@@ -1,65 +1,53 @@
 <?php
-header("Content-type: application/json; Charset=UTF-8");
-$null = json_encode(null);
+require("lib.php");
 
-$q0 = isset($_GET['q']) ? filter_var(
-	$_GET['q'],
-	FILTER_SANITIZE_STRING) : die($null);
+send_http_headers();
+
+$q0 = get_query();
 $q = urlencode($q0);
+$lmt = get_limit();
+$pages = 1;
 
 $res = [];
-$lmt = filter_var(@$_GET['n'], FILTER_VALIDATE_INT) ?
-       $_GET['n'] : 10;
-$pages = 1;
-$n = 0;
 
-for($pg=1; $pg<=$pages; $pg++) {
-	
-	$url = "http://ferheng.info/page/$pg/?s=$q";
-	$html = @file_get_contents($url) or die($null);    
-	$dom = new DOMDocument;
-	@$dom->loadHTML($html);
+for($pg=1; $pg <= $pages; $pg++) {
+	$url = "http://ferheng.info/page/{$pg}/?s={$q}";
+	$html = download($url);
+	$dom = parse_html($html);
 
-	foreach($dom->getElementsByTagName("article") as $art)
-	{
+	foreach($dom->getElementsByTagName("article") as $art) {
 		$h2 = $art->getElementsByTagName("h2")[0];
-		$title = filter_var($h2->nodeValue,
-				    FILTER_SANITIZE_STRING);
-		$link = filter_var($h2->getElementsByTagName("a")[0]
-				      ->getAttribute("href"),
-				   FILTER_SANITIZE_STRING);
-		$desc = filter_var($art->getElementsByTagName("div")[0]
-				       ->nodeValue,
-				   FILTER_SANITIZE_STRING);
-		$desc = mb_strlen($desc) > 150 ?
-			mb_substr($desc, 0, 150) . "..." : $desc; 
+		$title = clean_string($h2->nodeValue);
+		$link = clean_string($h2->getElementsByTagName("a")[0]
+					->getAttribute("href"));
+		$desc = clean_string($art->getElementsByTagName(
+			"div")[0]->nodeValue);
+		$desc = snippet($desc);
+		$sis = stristr($title, $q0) || stristr($q0, $title);
+		$rank = similar_text($title, $q0) / mb_strlen($title);
 		
-		if(stristr($link, "alfba")) {
+		if(stristr($link, "alfba"))
 			$res[] = [
-				"stristr" =>
-					(stristr($title, $q0) or
-						stristr($q0, $title)),
-				"rank" =>
-					(similar_text($title, $q0) /
-						mb_strlen($title)),
+				"stristr" => $sis,
+				"rank" => $rank,
 				"title" => $title,
 				"link" => $link,
 				"desc" => $desc,
 			];
-		}
 	}
 }
 
-if(empty($res)) die($null);
+if(empty($res))
+	die_null();
 
 rsort($res);
 
-$res2 = [];
+$_res = [];
 foreach($res as $r) {
-	if($lmt == $n)  break;
-	$res2[] = $r;
-	$n++;
+	if(!$lmt--)
+		break;
+	$_res[] = $r;
 }
 
-echo(json_encode($res2));
+output($_res);
 ?>

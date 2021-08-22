@@ -1,239 +1,228 @@
-/* Constants */
-const loader = "<div class='loader'></div>";
-const q = document.querySelector("input[name=q]");
+/* Globals */
+const q = document.querySelector('input[name=q]')
 
 /* Events */
-document.querySelector("#frmS").addEventListener("submit", e => {
-	e.preventDefault();
-	search();
-});
-window.addEventListener('load', search);
+document.querySelector('#frmS').addEventListener('submit', e => {
+	e.preventDefault()
+	search()
+})
+window.addEventListener('load', search)
 
 /* Functions */
 function search() {
-	const query = q.value.trim();
-	if(! query)
-	{
-		q.focus();
-		return;
+	const query = q.value.trim()
+	if(!query) {
+		q.focus()
+		return
 	}
 	
-	search_wikipedia ( query, "#res_wikipedia" );
-	search_wiktionary ( query, "#res_wiktionary" );
-	search_farhangumejuikawa ( query, "#res_farhangumejuikawa" );
-	search_ferheng ( query, "#res_ferheng" );
-	search_dictio ( query, "#res_dictio" );
-	search_vejin ( query , "#res_vejin" );
-	search_tewar_2 ( query , "#res_tewar_2" );	
+	search_wikipedia(query, '#res_wikipedia')
+	search_wiktionary(query, '#res_wiktionary')
+	search_farhangumejuikawa(query, '#res_farhangumejuikawa')
+	search_ferheng(query, '#res_ferheng')
+	search_dictio(query, '#res_dictio')
+	search_vejin(query, '#res_vejin')
+	search_tewar_2(query, '#res_tewar_2')
 }
-
-function search_ferheng (q, t) {
-	t = document.querySelector(t);
-	t.innerHTML = loader;
-	var res, fin = "";
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onload = function() {
-		
-		if (this.responseText == "null") {
-			t.innerHTML = "";
-			return;
+function search_ferheng(q, t) {
+	const dict = 'فەرهەنگی ئەناهیتا'
+	t = document.querySelector(t)
+	t.innerHTML = get_loader(dict)
+	get_json(`search/ferheng.info.php?q=${q}&n=3`, res => {
+		if(res == null) {
+			t.innerHTML = ''
+			return
 		}
 		
-		var res = JSON.parse(this.responseText);
-		
-		for( var a in res ) {
-			
-			fin += "<div><section><span class='tp'>فەرهەنگی ئەناهیتا</span><a rel='noopener noreferrer nofollow' href='"+res[a].link+"'>"+res[a].title+"</a></section>";
-			fin += "<section>"+res[a].desc+"</section></div>";
+		let html = ''
+		for(const r of res) {
+			html += '<div><section><span class="tp">' +
+				dict +
+				'</span><a rel=' +
+				'"noopener noreferrer nofollow" ' +
+				'href="' + r.link + '">' +
+				r.title + '</a></section>' +
+				'<section>' + r.desc +
+				'</section></div>'
 		}
-		
-		t.style.animation="loaded 1s ease forwards";
-		t.innerHTML = fin;
-	}
-	xmlhttp.open("get", `search/ferheng.info.php?q=${q}&n=3`);
-	xmlhttp.send();
+		t.innerHTML = html
+	})
 }
+function search_farhangumejuikawa(q, t) {
+	const dict = 'فەرهەنگی کاوە'
+	t = document.querySelector(t)
+	t.innerHTML = get_loader(dict)
+	get_json(`search/farhangumejuikawa.com.php?q=${q}&n=3`, res => {
+		if(res == null) {
+			t.innerHTML = ''
+			return
+		}
 
-function search_farhangumejuikawa (q, t) {
-	t = document.querySelector(t);
-	t.innerHTML = loader;
-	var res, fin = "";
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onload = function() {
-		
-		if (this.responseText == "null") {
-			t.innerHTML = "";
-			return;
+		let html = ''
+		for(const r of res) {
+			html += '<div><section><span class="tp">' +
+				dict +
+				'</span>' +
+				r.link +
+				'</section>' +
+				'<section>' + r.desc +
+				'</section></div>'
 		}
-		
-		var res = JSON.parse(this.responseText);
-		
-		for( var a in res ) {
-			
-			fin += "<div><section><span class='tp'>فەرهەنگی کاوە</span>"+res[a].link+"</section>";
-			fin += "<section>"+res[a].desc+"</section></div>";
-		}
-		
-		t.style.animation="loaded 1s ease forwards";
-		t.innerHTML = fin;
-	}
-	xmlhttp.open("get", `search/farhangumejuikawa.com.php?q=${q}&n=3`);
-	xmlhttp.send();
+		t.innerHTML = html
+	})
 }
+function search_dictio(q, t) {
+	const dict = 'دیکتیۆ'
+	t = document.querySelector(t)
+	t.innerHTML = get_loader(dict)
+	get_json(`search/dictio.kurditgroup.org.php?q=${q}&n=3`, res=>{
+		if(res == null) {
+			t.innerHTML = ''
+			return
+		}
 
-function search_dictio (q, t) {
-	t = document.querySelector(t);
-	t.innerHTML = loader;
-	var res, fin = "";
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onload = function() {
-		
-		if (this.responseText == "null") {
-			t.innerHTML = "";
-			return;
+		let html = ''
+		for(const r of res) {
+			html += '<div><section><span class="tp">' +
+				dict +
+				'</span>' +
+				'<a rel=' +
+				'"noopener noreferrer nofollow" ' +
+				'href="' + r.url + '">' +
+				q + '</a></section>' + 
+				'<section>' + r.text +
+				'</section></div>'
 		}
-		
-		var res = JSON.parse(this.responseText);
-		
-		for( var a in res ) {
-			
-			fin += "<div><section><span class='tp'>دیکتیۆ</span>";
-			fin += "<a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+q+"</a></section>";
-			fin += "<section>"+res[a].text+"</section></div>";
-		}
-		
-		t.style.animation="loaded 1s ease forwards";
-		t.innerHTML = fin;
-	}
-	xmlhttp.open("get", `search/dictio.kurditgroup.org.php?q=${q}&n=3`);
-	xmlhttp.send();
+		t.innerHTML = html
+	})
 }
-
-function search_wiktionary (q, t) {
-	t = document.querySelector(t);
-	t.innerHTML = loader;
-	var res, fin = "";
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onload = function() {
-		
-		if (this.responseText == "null") {
-			t.innerHTML = "";
-			return;
+function search_wiktionary(q, t) {
+	const dict = 'ویکیفەرهەنگ'
+	t = document.querySelector(t)
+	t.innerHTML = get_loader(dict)
+	get_json(`search/ku.wiktionary.org.php?q=${q}&n=3`, res => {
+		if(res == null) {
+			t.innerHTML = ''
+			return
 		}
-		
-		var res = JSON.parse(this.responseText);
-		
 		if(res.query.searchinfo.totalhits == 0) {
-			t.innerHTML = "";
-			return;
+			t.innerHTML = ''
+			return
 		}
 		
-		var rqs = res.query.search;
-		
-		for( var a in rqs ) {
-			
-			fin += "<div><section><span class='tp'>ویکیفەرهەنگ</span><a rel='noopener noreferrer nofollow' href='https://ku.wiktionary.org/wiki/"+encodeURIComponent(rqs[a].title)+"'>"+rqs[a].title+"</a></section>";
-			fin += "<section>"+rqs[a].snippet+"</section></div>";
+		let html = ''
+		const rqs = res.query.search
+		for(const r of rqs) {
+			html += '<div><section><span class="tp">' +
+				dict +
+				'</span><a rel=' +
+				'"noopener noreferrer nofollow" href' +
+				'="https://ku.wiktionary.org/wiki/' +
+				encodeURIComponent(r.title) +
+				'">' + r.title + '</a></section>' + 
+				'<section>' + r.snippet +
+				'</section></div>'
 		}
-		
-		t.style.animation="loaded 1s ease forwards";
-		t.innerHTML = fin;
-	}
-	xmlhttp.open("get", `search/ku.wiktionary.org.php?q=${q}&n=3`);
-	xmlhttp.send();
+		t.innerHTML = html
+	})
 }
-
-function search_wikipedia (q, t) {
-	t = document.querySelector(t);
-	t.innerHTML = loader;
-	var res, fin = "";
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onload = function() {
-		
-		if (this.responseText == "null") {
-			t.innerHTML = "";
-			return;
-		}
-		
-		var res = JSON.parse(this.responseText);
-		
+function search_wikipedia(q, t) {
+	const dict = 'ویکیپیدیا'
+	t = document.querySelector(t)
+	t.innerHTML = get_loader(dict)
+	get_json(`search/ckb.wikipedia.org.php?q=${q}&n=3`, res => {
+		if(res == null) {
+			t.innerHTML = ''
+			return
+		}		
 		if(res.query.searchinfo.totalhits == 0) {
-			t.innerHTML = "";
-			return;
+			t.innerHTML = ''
+			return
 		}
 		
-		var rqs = res.query.search;
-		
-		for( var a in rqs ) {
-			
-			fin += "<div><section><span class='tp'>ویکیپیدیا </span><a rel='noopener noreferrer nofollow' href='https://ckb.wikipedia.org/wiki/"+encodeURIComponent(rqs[a].title)+"'>"+rqs[a].title+"</a></section>";
-			fin += "<section>"+rqs[a].snippet+"</section></div>";
+		let html = ''
+		const rqs = res.query.search
+		for(const r of rqs) {
+			html += '<div><section><span class="tp">' +
+				dict +
+				'</span><a rel=' +
+				'"noopener noreferrer nofollow" href' +
+				'="https://ckb.wikipedia.org/wiki/' +
+				encodeURIComponent(r.title) +
+				'">' + r.title + '</a></section>' +
+				'<section>' + r.snippet +
+				'</section></div>'
 		}
-		
-		t.style.animation="loaded 1s ease forwards";
-		t.innerHTML = fin;
-	}
-	xmlhttp.open("get", `search/ckb.wikipedia.org.php?q=${q}&n=3`);
-	xmlhttp.send();
+		t.innerHTML = html
+	})
 }
+function search_vejin(q, t) {
+	const dict = 'فەرهەنگەکانی ڤەژین'
+	t = document.querySelector(t)
+	t.innerHTML = get_loader(dict)
+	get_json(`search/lex.vejin.net.php?q=${q}&n=3`, res => {
+		if(res == null) {
+			t.innerHTML = ''
+			return
+		}
 
-function search_vejin (q, t) {
-	t = document.querySelector(t);
-	t.innerHTML = loader;
-	var res, fin = "";
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onload = function() {
-		
-		if (this.responseText == "null") {
-			t.innerHTML = "";
-			return;
+		let html = ''
+		for(const r of res) {
+			html += '<div><section><span class="tp">' +
+				dict + ' - ' + r.wordlist +
+				'</span><a rel=' +
+				'"noopener noreferrer nofollow" ' +
+				'href="' + r.url + '">' +
+				r.title + '</a></section>' + 
+				'<section>' + r.def +
+				'</section></div>'
 		}
-		
-		var res = JSON.parse(this.responseText);
-		
-		for( var a in res ) {
-			
-			fin += "<div><section><span class='tp'>فەرهەنگەکانی ڤەژین"+res[a].wordlist+"</span><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].title+"</a></section>";
-			fin += "<section>"+res[a].def+"</section></div>";
-		}
-		
-		t.style.animation="loaded 1s ease forwards";
-		t.innerHTML = fin;
-	}
-	xmlhttp.open("get", `search/lex.vejin.net.php?q=${q}&n=3`);
-	xmlhttp.send();
+		t.innerHTML = html
+	})
 }
-
-function search_tewar_2 (q, t) {
-	t = document.querySelector(t);
-	t.innerHTML = loader;
-	var res, fin = "";
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onload = function() {
-		
-		if (this.responseText == "null") {
-			t.innerHTML = "";
-			return;
+function search_tewar_2(q, t) {
+	const dict = 'تەوار - وەشانی ٢'
+	t = document.querySelector(t)
+	t.innerHTML = get_loader(dict)
+	get_json(`search/tewar-2.php?q=${q}&n=3`, res => {
+		if(res == null) {
+			t.innerHTML = ''
+			return
 		}
 		
-		var res = JSON.parse(this.responseText);
-		
-		for( var a in res ) {
-			
-			fin += "<div><section><span class='tp'>تەوار - وەشانی ٢</span><a rel='noopener noreferrer nofollow' href='"+res[a].url+"'>"+res[a].word+"</a></section>";
-			fin += "<section>"+res[a].mean+"</section></div>";
+		let html = ''
+		for(const r of res) {
+			html += '<div><section><span class="tp">' +
+				dict +
+				'</span><a rel=' +
+				'"noopener noreferrer nofollow" ' +
+				'href="' + r.url + '">' +
+				r.word + '</a></section>' +
+				'<section>' + r.mean +
+				'</section></div>'
 		}
-		
-		t.style.animation="loaded 1s ease forwards";
-		t.innerHTML = fin;
-	}
-	xmlhttp.open("get", `search/tewar-2.php?q=${q}&n=3`);
-	xmlhttp.send();
+		t.innerHTML = html
+	})
 }
-
 function clear_screen(e) {
 	e.preventDefault()
 	q.value = ''
-	document.querySelectorAll("#res div").forEach(d => d.innerHTML = '')
+	document.querySelectorAll('#res div').forEach(
+		d => d.innerHTML = '')
 	search()
+}
+function get_url(url, callback) {
+	const x = new XMLHttpRequest
+	x.open('get', url)
+	x.onload = e => callback(x.responseText)
+	x.send()
+}
+function get_json(url, callback) {
+	get_url(url, txt => callback(JSON.parse(txt)))
+}
+function get_loader(dict) {
+	return `<section style="margin:.5em 0">` +
+		`<span class="tp">${dict} ` +
+		`<div class="loader" style="display:inline-block;` +
+		`vertical-align:middle"></div></span></section>`
 }
