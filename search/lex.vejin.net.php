@@ -13,9 +13,9 @@ $dom = parse_html($html);
 $res = [];
 
 $results_el = $dom->getElementById("results");
-$items = get_elements_by_class($results_el, "item", "div", $lmt);
+$items = get_elements_by_class($results_el, "result", "div", $lmt);
 foreach($items as $item) {
-	$header = get_element_by_class($item, "header", "a");
+	$header = get_element_by_class($item, "resultHead", "div")->firstChild;
 	$link = clean_string($header->getAttribute("href"));
 	
 	$dict_el = get_element_by_class($header, "fromDict", "span");
@@ -24,7 +24,7 @@ foreach($items as $item) {
 	$header->removeChild($dict_el);
 	$title = trim(clean_string($header->nodeValue));
 	
-	$desc = get_element_by_class($item, "description", "div");
+	$desc = get_element_by_class($item, "resultDef", "div");
 	$desc = snippet(trim(clean_string($desc->nodeValue)));
 	$desc = preg_replace("/\n+/u", "<br>", $desc);
 
