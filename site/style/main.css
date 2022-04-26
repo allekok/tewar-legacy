@@ -113,7 +113,8 @@ code {
 #res_googleTranslate div,
 #res_wikipedia div,
 #res_vejin div,
-#res_tewar_2 div {
+#res_tewar_2 div,
+#res_ferheng_org div {
 	margin:.5em auto;
 }
 #res_ferheng div section:nth-child(even),
@@ -123,10 +124,14 @@ code {
 #res_googleTranslate div section:nth-child(even),
 #res_wikipedia div section:nth-child(even),
 #res_vejin div section:nth-child(even),
-#res_tewar_2 div section:nth-child(even) {
+#res_tewar_2 div section:nth-child(even),
+#res_ferheng_org div section:nth-child(even) {
 	font-size:.7em;
 	word-wrap:break-word;
 	padding-right:1em;
+}
+#res_ferheng_org p {
+	margin:0;
 }
 #res div div {
 	border-top:1px solid #ddd;

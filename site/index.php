@@ -81,6 +81,12 @@
 				   href="https://allekok.ir/tewar/">
 					تەوار - وەشانی ٢
 				</a>
+				&bull;
+				<a target="_blank"
+				   rel="noopener noreferrer nofollow"
+				   href="http://ferheng.org/">
+					Ferheng.org
+				</a>
 			</small>
 			<div id="res">
 				<div id="res_tewar_2"></div>
@@ -90,6 +96,7 @@
 				<div id="res_wikipedia"></div>
 				<div id="res_wiktionary"></div>
 				<div id="res_dictio"></div>
+				<div id="res_ferheng_org"></div>
 			</div>
 		</div>
 		<footer style="text-align:center;flex-shrink:0">

@@ -23,6 +23,7 @@ function search() {
 	search_dictio(query, '#res_dictio')
 	search_vejin(query, '#res_vejin')
 	search_tewar_2(query, '#res_tewar_2')
+	search_ferheng_org(query, '#res_ferheng_org')
 }
 function search_ferheng(q, t) {
 	const dict = 'فەرهەنگی ئەناهیتا'
@@ -200,6 +201,41 @@ function search_tewar_2(q, t) {
 				r.word + '</a></section>' +
 				'<section>' + r.mean +
 				'</section></div>'
+		}
+		t.innerHTML = html
+	})
+}
+function search_ferheng_org(q, t) {
+	const dict = 'Ferheng.org'
+	t = document.querySelector(t)
+	t.innerHTML = get_loader(dict)
+	get_json(`search/ferheng.org.php?q=${q}&n=3`, res => {
+		if(res == null) {
+			t.innerHTML = ''
+			return
+		}
+
+		const langs = {
+			kurd: 'کوردی',
+			eng: 'ئینگلیسی',
+			turk: 'تورکی',
+			ger: 'ئاڵمانی',
+			zaza: 'زازاکی'
+		}
+		
+		let html = ''
+		for(const r of res) {
+			const dict_name = r.dict
+			delete r.dict
+			html += '<div><section><span class="tp">' +
+				dict + ' - ' + dict_name +
+				'</span></section><section>'
+			for(const lang in r) {
+				html += '<p>' +
+					`${langs[lang]}: ${r[lang]}` +
+					'</p>'
+			}
+			html += '</section></div>'
 		}
 		t.innerHTML = html
 	})
