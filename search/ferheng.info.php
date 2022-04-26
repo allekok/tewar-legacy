@@ -25,7 +25,7 @@ for($pg=1; $pg <= $pages; $pg++) {
 		$desc = snippet($desc);
 		$sis = stristr($title, $q0) || stristr($q0, $title);
 		$rank = similar_text($title, $q0) / mb_strlen($title);
-		
+
 		if(stristr($link, "alfba"))
 			$res[] = [
 				"stristr" => $sis,

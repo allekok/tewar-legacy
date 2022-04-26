@@ -27,7 +27,7 @@
 				<input type="text"
 				       name="q"
 				       placeholder="وشە..."
-				       value="<?php 
+				       value="<?php
 					      if(isset($_GET["q"]))
 						      echo htmlspecialchars($_GET["q"]);
 					      ?>">

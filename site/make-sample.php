@@ -77,14 +77,14 @@ if(_service_worker) {
 
 foreach(_files as $f) {
 	$text = file_get_contents($f["in"]);
-	
+
 	$text = str_replace([_script_needle,
 			     _style_needle,
 			     _service_worker_needle],
 			    [$scripts, $styles, $sw], $text);
-	
+
 	file_put_contents($f["out"], $text);
-	
+
 	echo "`{$f["out"]}` Done.\n";
 }
 ?>

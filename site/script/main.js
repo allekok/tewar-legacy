@@ -15,7 +15,7 @@ function search() {
 		q.focus()
 		return
 	}
-	
+
 	search_wikipedia(query, '#res_wikipedia')
 	search_wiktionary(query, '#res_wiktionary')
 	search_farhangumejuikawa(query, '#res_farhangumejuikawa')
@@ -34,7 +34,7 @@ function search_ferheng(q, t) {
 			t.innerHTML = ''
 			return
 		}
-		
+
 		let html = ''
 		for(const r of res) {
 			html += '<div><section><span class="tp">' +
@@ -90,7 +90,7 @@ function search_dictio(q, t) {
 				'<a rel=' +
 				'"noopener noreferrer nofollow" ' +
 				'href="' + r.url + '">' +
-				q + '</a></section>' + 
+				q + '</a></section>' +
 				'<section>' + r.text +
 				'</section></div>'
 		}
@@ -110,7 +110,7 @@ function search_wiktionary(q, t) {
 			t.innerHTML = ''
 			return
 		}
-		
+
 		let html = ''
 		const rqs = res.query.search
 		for(const r of rqs) {
@@ -120,7 +120,7 @@ function search_wiktionary(q, t) {
 				'"noopener noreferrer nofollow" href' +
 				'="https://ku.wiktionary.org/wiki/' +
 				encodeURIComponent(r.title) +
-				'">' + r.title + '</a></section>' + 
+				'">' + r.title + '</a></section>' +
 				'<section>' + r.snippet +
 				'</section></div>'
 		}
@@ -135,12 +135,12 @@ function search_wikipedia(q, t) {
 		if(res == null) {
 			t.innerHTML = ''
 			return
-		}		
+		}
 		if(res.query.searchinfo.totalhits == 0) {
 			t.innerHTML = ''
 			return
 		}
-		
+
 		let html = ''
 		const rqs = res.query.search
 		for(const r of rqs) {
@@ -174,7 +174,7 @@ function search_vejin(q, t) {
 				'</span><a rel=' +
 				'"noopener noreferrer nofollow" ' +
 				'href="' + r.url + '">' +
-				r.title + '</a></section>' + 
+				r.title + '</a></section>' +
 				'<section>' + r.def +
 				'</section></div>'
 		}
@@ -190,7 +190,7 @@ function search_tewar_2(q, t) {
 			t.innerHTML = ''
 			return
 		}
-		
+
 		let html = ''
 		for(const r of res) {
 			html += '<div><section><span class="tp">' +
@@ -222,7 +222,7 @@ function search_ferheng_org(q, t) {
 			ger: 'ئاڵمانی',
 			zaza: 'زازاکی'
 		}
-		
+
 		let html = ''
 		for(const r of res) {
 			const dict_name = r.dict

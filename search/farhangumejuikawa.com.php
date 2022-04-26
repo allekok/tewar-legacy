@@ -26,14 +26,14 @@ foreach($dom->getElementsByTagName("td") as $td) {
 		$desc = clean_string($td->nodeValue);
 		$desc = snippet($desc);
 		$res[$id] += [
-			"link" => "<form class='fmk' 
+			"link" => "<form class='fmk'
 action='{$url}' method='post'><input type='hidden'
 name='strvar' value='{$res[$id]['title']}'><button
 type='submit'>{$res[$id]['title']}</button></form>",
 			"desc" => $desc,
 		];
 		$id++;
-		
+
 		if(!$lmt--)
 			break;
 	}

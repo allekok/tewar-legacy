@@ -14,7 +14,7 @@ $result = [];
 foreach($dicts as $d) {
 	if(!$lmt)
 		break;
-	
+
 	$dict = urlencode($d[0]);
 	$dict_name = $d[1];
 	$url = "http://api.ferheng.org/get.php?lang={$dict}&word={$q}";
