@@ -13,6 +13,8 @@ $div = get_element_by_class($dom, "dictio-result", "div");
 
 $text = clean_string($div->nodeValue);
 $text = trim($text);
+if(!$text)
+	die_null();
 $text = preg_replace("/\s*\n+\s*/u", " - ", $text);
 $text = preg_replace("/\s+/u", " ", $text);
 $text = snippet($text);
