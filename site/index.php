@@ -19,7 +19,7 @@
 				<h1 style="margin:auto 0 auto .5em;
 					   font-size:1.5em;
 					   font-weight:bold"
-				><a style="color:black"
+				><a class="fore-color"
 				    href="index.php"
 				    onclick="clear_screen(event)">
 					تەوار
@@ -36,7 +36,6 @@
 				</button>
 			</form>
 			<small style="font-size:.66em;
-				      color:#444;
 				      display:block;
 				      margin:0 1.5em 0">
 				فەرهەنگەکان:
@@ -101,7 +100,7 @@
 		</div>
 		<footer style="text-align:center;flex-shrink:0">
 			<a href="https://allekok.github.io/donate/"
-			   style="color:#00E">
+			   class="special">
 				یارمەتیی ماڵی
 			</a>
 			<a href="dev.html">

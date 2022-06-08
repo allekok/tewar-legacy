@@ -31,6 +31,8 @@ body {
 	max-width:1000px;
 }
 h1, form, input, button, a, code, p {
+	background:inherit;
+	color:inherit;
 	font-family:inherit;
 	box-sizing:border-box;
 	transition:.15s ease;
@@ -147,6 +149,7 @@ code {
 	font-size:.6em;
 }
 small {
+	color:#444;
 	font-size:1.2em;
 	line-height:2.3;
 }
@@ -186,8 +189,95 @@ footer a:hover {
 	background:#aaa;
 	height:1px;
 }
+.banner {
+	background:#CFC;
+	padding:1em
+}
+.banner a {
+	color:#00e;
+}
+.special {
+	color:#00e;
+}
+.fore-color {
+	color:#000;
+}
 @media only screen and (min-width:600px) {
 	body {
 		font-size:22px;
+	}
+}
+@media (prefers-color-scheme:dark) {
+	@keyframes loading {
+		0% {
+			background:#777;
+		}
+		10% {
+			background:#666;
+			transform:scale(.5);
+		}
+		70% {
+			background:#aaa;
+			transform:scale(.8);
+		}
+		100% {
+			background:#777;
+		}
+	}
+	body {
+		background:#000;
+		color:#fff;
+	}
+	code {
+		border-left-color:#555;
+	}
+	#res a {
+		color:#0e0;
+	}
+	#frmS button[type=submit]:hover {
+		border-color:#0e0;
+	}
+	#frmS input[name=q]:focus {
+		border-color:#0e0;
+	}
+	.fmk button {
+		color:#0e0;
+	}
+	#res div div {
+		border-top-color:#555;
+	}
+	.tp {
+		background:#555;
+		color:#eee;
+	}
+	small {
+		color:#ccc;
+	}
+	small a:link, small a:visited {
+		color:#0e0;
+	}
+	footer {
+		border-top-color:#555;
+	}
+	footer a {
+		color:#ccc;
+	}
+	footer a:hover {
+		background:#222;
+	}
+	.hr {
+		background:#555;
+	}
+	.banner {
+		background:#141;
+	}
+	.banner a {
+		color:#0e0;
+	}
+	.special {
+		color:#0e0;
+	}
+	.fore-color {
+		color:#fff;
 	}
 }
