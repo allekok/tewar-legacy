@@ -32,7 +32,6 @@ body {
 }
 h1, form, input, button, a, code, p {
 	background:inherit;
-	color:inherit;
 	font-family:inherit;
 	box-sizing:border-box;
 	transition:.15s ease;
@@ -64,6 +63,7 @@ code {
 	padding:1em;
 	border:1px solid;
 	border-left:0;
+	color:inherit;
 	outline:0;
 	-webkit-appearance:none;
 	appearance:none;
@@ -75,6 +75,7 @@ code {
 	padding:1em;
 	margin:1em auto;
 	background:none;
+	color:inherit;
 	outline:0;
 	-webkit-appearance:none;
 	appearance:none;
@@ -103,6 +104,9 @@ code {
 	cursor:pointer;
 	font-size:1em;
 	padding:0;
+}
+#res a {
+	color:$00e;
 }
 #res {
 	margin:auto;
