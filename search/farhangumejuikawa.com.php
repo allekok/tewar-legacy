@@ -38,7 +38,7 @@ foreach($founds as $a) {
 			"<input type='hidden' name='search'>" .
 			"<input type='hidden'" .
 			"name='searchWrd' value='{$title}'><button" .
-			"type='submit'>{$title}</button></form>";
+			" type='submit'>{$title}</button></form>";
 
 		$res[] = [
 			"title" => $title,
